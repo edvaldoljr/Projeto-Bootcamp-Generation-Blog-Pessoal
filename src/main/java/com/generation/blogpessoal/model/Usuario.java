@@ -24,7 +24,6 @@ public class Usuario {
     @Email(message = "O atributo Usuário deve ser um email válido")
     private String usuario;
 
-
     @NotBlank(message = "O atributo Senha é Obrigatório")
     @Size(min = 8, message = "Asenha deve ter no mínimo 8 caracteres" )
     private String senha;
@@ -35,6 +34,16 @@ public class Usuario {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties("usuario")
     private List<Postagem> postagem;
+
+    public Usuario(Long id, String nome, String usuario, String senha, String foto) {
+        this.id = id;
+        this.nome = nome;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.foto = foto;
+    }
+
+    public Usuario() { }
 
     public Long getId() {
         return id;
